@@ -27,28 +27,24 @@ public class Program07 {
 
 		boolean success = new File(folder + "\\out").mkdir();
 		
-		String targetFileStr = folder + "\\out\\summary.csv";
+		String targetFileStr = folder + "\\out\\summary.txt";
 
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			
-			int N = sc.nextInt();
 			String itemCsv = br.readLine();
 
-			for (int i = 0; i < N; i++) {
-				String produto = sc.next();
-				double preco = sc.nextDouble();
-				int unidade = sc.nextInt();
+			while (itemCsv != null) {
+				String[] fields = itemCsv.split(",");
+				String produto = fields[0];
+				double preco = Double.parseDouble(fields[1]);
+				int unidade = Integer.parseInt(fields[2]);
 				Produto itens = new Produto(produto, preco, unidade);
 				List.add(itens);
 				
 				itemCsv = br.readLine();
 			}
 
-			for (Produto x : List) {
-				System.out.println(x);
-			}
-
-			try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
+			try (BufferedWriter bw = new BufferedWriter(new FileWriter(targetFileStr))) {
 				for (Produto line : List) {
 					bw.write(line.toString());
 					bw.newLine();

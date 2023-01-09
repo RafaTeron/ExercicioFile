@@ -48,7 +48,7 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		return "Produto: " + produto + "| Unidade: " + String.format("%.2f", total());
+		return "Produto: " + produto + "| Total: " + String.format("%.2f", total());
 	}
 	
 	
